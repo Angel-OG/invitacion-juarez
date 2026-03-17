@@ -1,0 +1,152 @@
+/* Configuración General con Fondo de Oficina Moderna */
+body {
+    /* Fondo con textura de escritorio y degradado de iluminación */
+    background: 
+        linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.05) 100%),
+        radial-gradient(circle at center, #ffffff 0%, #d1d9d9 100%);
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    overflow: hidden;
+}
+
+/* Agregamos una sombra proyectada en el "piso" para dar profundidad */
+body::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 40px;
+    background: rgba(0,0,0,0.1);
+    bottom: 25%;
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    cursor: pointer;
+    z-index: 10;
+    /* Efecto de elevación al pasar el mouse */
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+/* El Sobre con textura de papel */
+.sobre {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #004d4d;
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border-radius: 2px;
+}
+
+/* Solapa superior con detalle dorado sutil */
+.solapa {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 110px solid #003333;
+    z-index: 12;
+    transform-origin: top;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Brillo en el borde de la solapa */
+.solapa::after {
+    content: '';
+    position: absolute;
+    top: -112px;
+    left: -160px;
+    width: 320px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+}
+
+.solapa.abierta {
+    transform: rotateX(180deg);
+    z-index: 5;
+}
+
+.cuerpo {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-bottom: 110px solid #005a5a;
+    z-index: 11;
+}
+
+/* La Carta (Invitación) */
+.carta {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 290px;
+    height: 190px;
+    background: white;
+    z-index: 6;
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carta img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Animación de salida responsiva */
+.carta.fuera {
+    transform: translateY(-150px) scale(1.3);
+    z-index: 20;
+    height: 480px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+/* Instrucción Estilizada */
+.instruccion {
+    position: absolute;
+    bottom: -80px;
+    width: 100%;
+    text-align: center;
+    color: #004d4d;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+/* Adaptabilidad para móviles */
+@media (max-width: 480px) {
+    .container { width: 280px; }
+    .solapa, .cuerpo { border-left-width: 140px; border-right-width: 140px; }
+    .solapa::after { width: 280px; left: -140px; }
+    .carta.fuera { transform: translateY(-130px) scale(1.1); height: 420px; }
+}

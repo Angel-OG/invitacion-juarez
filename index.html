@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación E.S.T.A 0037</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <div class="container" onclick="abrirInvitacion()">
+        <div class="carta" id="carta">
+            <img src="img/invitacion.jpg" alt="Invitación">
+        </div>
+
+        <div class="sobre" id="sobre">
+            <div class="solapa" id="solapa"></div>
+            <div class="cuerpo"></div>
+        </div>
+        
+        <p class="instruccion">Toca el sobre para abrir</p>
+    </div>
+
+    <script>
+        function abrirInvitacion() {
+            document.getElementById('solapa').classList.toggle('abierta');
+            document.getElementById('carta').classList.toggle('fuera');
+        }
+    </script>
+</body>
+</html>
